@@ -23,6 +23,10 @@
     "@cycle/state": "^1.1.0",
     "cyclic-router": "^6.0.0",
     "ramda": "^0.26.1",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.4",
+    "redux-cycles": "^0.4.1",
+    "redux-promise": "^0.6.0",
     "switch-path": "^1.2.0",
     "xstream": "^11.10.0"
   },
