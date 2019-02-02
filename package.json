@@ -20,7 +20,6 @@
     "@cycle/isolate": "^4.2.0",
     "@cycle/run": "^5.2.0",
     "@cycle/state": "^1.1.0",
-    "cyclejs-utils": "^4.0.2",
     "cyclic-router": "^6.0.0",
     "ramda": "^0.26.1",
     "switch-path": "^1.2.0",
