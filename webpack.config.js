@@ -17,7 +17,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Cyclejs todo application',
+      template: resolve('index.html'),
     }),
     new HotModuleReplacementPlugin(),
   ],
