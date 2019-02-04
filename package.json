@@ -1,6 +1,7 @@
 {
   "name": "cycle-todo-application",
   "version": "0.0.0",
+  "private": true,
   "description": "Learning CSS and Cyclejs by building todo application ",
   "scripts": {
     "start": "webpack-dev-server"
