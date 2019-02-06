@@ -10,8 +10,9 @@ but, I couldn't find it. so I built this.
 ## Used techniques
 
 + Programming paradigm : Functional Reactive Programming
-+ Application architecture : MVI, Flux
-+ Mindsets: Component, Driver, Stream, Source, Sink, Operator, Store, Action etc..(but these are most important ideas)
++ Application architecture : extended MVI(MVI + modified Flux)
+  - `Component = Connector(Intent) + Modeler(Model) + Renderer(View) + Router + Dispatcher`
++ Mindsets: Component, Driver, Stream, Source, Sink, Operator, Store, Action etc..(but these are most important ideas), Object as argument.
 + Libraries: ramda, xstream, cyclic-router, switch-path(used by cyclic-router), redux, redux-actions
 + Framework: Cyclejs(run/dom/history/isolate)
 + Environment:
@@ -29,3 +30,7 @@ but, I couldn't find it. so I built this.
 + `store`: provides redux store and action creators.
   - `ducks`: contains action creators, follows ducks structure.
 
+## Known Issues
+
++ index export file of some directory(`constants`, `drivers`, `components`) are missing
++ streams that derived from `state$` are not optimized.
