@@ -1,4 +1,4 @@
-import { prop, map, pipe, cond, T, compose, partial, equals, always, filter, find, values, flatten, test, dissoc } from 'ramda';
+import { prop, map, pipe, compose, partial, equals, always, filter, find, values, flatten, test, dissoc, ifElse } from 'ramda';
 import { ul, li, section, button } from '@cycle/dom';
 import xs from 'xstream';
 import isolate from '@cycle/isolate';
@@ -40,14 +40,15 @@ function childrenCombiner({ todoList$, todoFilter$, sources }) {
 
             return isolatedTodoItem({ ...sources, props$ });
           }),
-          cond([
-            [compose(equals(0), prop('length')), always({ DOM: xs.of(createDefaultTodoList()), router: xs.never(), action$: xs.never() })],
-            [T, todoItemSinks => ({
+          ifElse(
+            compose(equals(0), prop('length')),
+            always({ DOM: xs.of(createDefaultTodoList()), router: xs.never(), action$: xs.never() }),
+            todoItemSinks => ({
               DOM: xs.combine(...map(prop('DOM'), todoItemSinks)),
               router: xs.merge(...map(prop('router'), todoItemSinks)),
               action$: xs.merge(...map(prop('action$'), todoItemSinks)),
-            })]
-          ]),
+            })
+          ),
         )
       )
     )
