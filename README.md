@@ -34,4 +34,7 @@ but, I couldn't find it. so I built this.
 
 + index export file of some directory(`constants`, `drivers`, `components`) are missing
 + streams that derived from `state$` are not optimized.
-+ no directory for pages, this is my mistake.
++ no directory for pages
+  * this is my mistake.
++ Design is ugly
+  * I'm really, really bad an art.
