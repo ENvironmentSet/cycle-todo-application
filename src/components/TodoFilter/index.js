@@ -13,7 +13,7 @@ function modeler(state$) {
 }
 
 function renderer(todoFilter$) {
-  return todoFilter$.map(todoFilter => input('.todoFilter', { attr: { value: todoFilter } }))
+  return todoFilter$.map(todoFilter => input('.todoFilter', { attrs: { value: String(todoFilter).replace(/\//g, '') } }))
 }
 
 function dispatcher(change$) {
