@@ -42,3 +42,5 @@ but, I couldn't find it. so I built this.
   * I'm lazy.
 + todo's id is not unique.
   * 'almost unique'.
++ why app dispatches type '@@INIT' action when it lunches?
+  * because my redux driver couldn't catch redux's @@INIT action. this is kind of monkey patching, but this would be better then touching redux store directly.
