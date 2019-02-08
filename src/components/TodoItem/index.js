@@ -4,9 +4,9 @@ import { updateTodoItem, deleteTodoItem } from '^/store/ducks';
 import xs from 'xstream';
 
 function connector(DOM) {
-  const status$ = DOM.select('.todoStatus').events('click');
-  const edit$ = DOM.select('.editButton').events('click');
-  const delete$ = DOM.select('.deleteButton').events('click');
+  const status$ = DOM.select('.todo-status').events('click');
+  const edit$ = DOM.select('.edit-button').events('click');
+  const delete$ = DOM.select('.delete-button').events('click');
 
   return {
     status$,
@@ -28,13 +28,13 @@ function modeler({ state$, props$ }) {
 function renderer(todo$) {
   return todo$
     .map(
-      ({ title, content, tags, done}) => article('.todoItem', [
-        header('.todoItemHeader', [h3('.todoTitle', title)]),
-        p('.todoContent', content),
-        ul('.todoTags', map(partial(li, ['.todoTag']), tags)),
-        input('.todoStatus', { attrs: { type: 'checkbox', checked: done } }),
-        button('.editButton', { attrs: { type: 'button' } }, 'edit this todo item.'),
-        button('.deleteButton', { attrs: { type: 'button' } }, 'delete this todo item.'),
+      ({ title, content, tags, done}) => article('.todo-item', [
+        header('.todo-item-header', [h3('.todo-title', title)]),
+        p('.todo-content', content),
+        ul('.todo-tags', map(partial(li, ['.todo-tag']), tags)),
+        input('.todo-status', { attrs: { type: 'checkbox', checked: done } }),
+        button('.edit-button', { attrs: { type: 'button' } }, 'edit this todo item.'),
+        button('.delete-button', { attrs: { type: 'button' } }, 'delete this todo item.'),
       ])
     );
 }
