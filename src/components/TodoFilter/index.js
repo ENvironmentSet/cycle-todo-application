@@ -1,6 +1,6 @@
 import { input } from '@cycle/dom';
 import debounce from 'xstream/extra/debounce'
-import { prop, compose } from 'ramda';
+import { prop, compose, replace } from 'ramda';
 
 import { setTodoFilter } from '^/store/ducks';
 
@@ -13,7 +13,7 @@ function modeler(state$) {
 }
 
 function renderer(todoFilter$) {
-  return todoFilter$.map(todoFilter => input('.todoFilter', { attrs: { value: String(todoFilter).replace(/\//g, '') } }))
+  return todoFilter$.map(todoFilter => input('.todoFilter', { attrs: { value: replace(/\//g, '', String(todoFilter)) } }))
 }
 
 function dispatcher(change$) {
