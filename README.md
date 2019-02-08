@@ -29,10 +29,10 @@ but, I couldn't find it. so I built this.
 + `drivers`: drivers directory.
 + `store`: provides redux store and action creators.
   - `ducks`: contains action creators, follows ducks structure.
++ `utils`: utility function directory.
 
 ## Known Issues
 
-+ index export file of some directory(`constants`, `drivers`, `components`) are missing
 + streams that derived from `state$` are not optimized.
 + no directory for pages
   * this is my mistake.
