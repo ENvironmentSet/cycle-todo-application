@@ -7,10 +7,10 @@ import { setTodoFormTitle, setTodoFormContent, setTodoFormTags, resetTodoForm, a
 import { ejectElementValueFormEvent } from '^/utils';
 
 function connector(DOM) {
-  const titleInput$ = DOM.select('.todoTitle').events('keyup');
-  const contentInput$ = DOM.select('.todoContent').events('keyup');
-  const tagsInput$ = DOM.select('.todoTags').events('keyup');
-  const create$ = DOM.select('.todoSubmit').events('click');
+  const titleInput$ = DOM.select('.todo-title').events('keyup');
+  const contentInput$ = DOM.select('.todo-content').events('keyup');
+  const tagsInput$ = DOM.select('.todo-tags').events('keyup');
+  const create$ = DOM.select('.todo-submit').events('click');
 
   return {
     titleInput$,
@@ -36,17 +36,17 @@ function modeler({ titleInput$, contentInput$, tagsInput$, state$ }) {
 
 function renderer(todoForm$) {
   return todoForm$
-    .map(({ title, content, tags }) => form('.todoForm', [
-      label({ attrs: { for: 'todoTitle' } }, 'title:'),
-      input('.todoTitle', { attrs: { name: 'todoTitle', value: title } }),
+    .map(({ title, content, tags }) => form('.todo-form', [
+      label({ attrs: { for: 'todo-title' } }, 'title:'),
+      input('.todo-title', { attrs: { name: 'todo-title', value: title } }),
       br(),
-      label({ attrs: { for: 'todoContent' } }, 'content:'),
-      input('.todoContent', { attrs: { name: 'todoContent', value: content } }),
+      label({ attrs: { for: 'todo-content' } }, 'content:'),
+      input('.todo-content', { attrs: { name: 'todo-content', value: content } }),
       br(),
-      label({ attrs: { for: 'todoTags' } }, 'tags:'),
-      input('.todoTags', { attrs: { name: 'todoTags', value: String(tags) } }),
+      label({ attrs: { for: 'todo-tags' } }, 'tags:'),
+      input('.todo-tags', { attrs: { name: 'todo-tags', value: String(tags) } }),
       br(),
-      button('.todoSubmit', { attrs: { type: 'button' } }, 'create todo item!'),
+      button('.todo-submit', { attrs: { type: 'button' } }, 'create todo item!'),
     ]))
 }
 
