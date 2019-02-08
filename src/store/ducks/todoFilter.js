@@ -1,5 +1,5 @@
 import { createActions, handleActions } from 'redux-actions';
-import { constructN } from 'ramda';
+import { constructN, flip, prop } from 'ramda';
 
 import { createDefaultTodoFilter } from '^/constants/defaultState';
 
@@ -11,6 +11,6 @@ export const { setTodoFilter, clearTodoFilter } = createActions({
 }, CLEAR_TODO_FILTER);
 
 export default handleActions({
-  [setTodoFilter]: (_, { payload: filter }) => filter,
+  [setTodoFilter]: flip(prop('payload')),
   [clearTodoFilter]: createDefaultTodoFilter,
 }, createDefaultTodoFilter());
