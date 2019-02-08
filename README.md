@@ -38,9 +38,8 @@ but, I couldn't find it. so I built this.
   * this is my mistake.
 + Design is ugly
   * I'm really, really bad an art.
-+ no error handler for filter.
-  * I'm lazy.
 + todo's id is not unique.
   * 'almost unique'.
 + why app dispatches type '@@INIT' action when it lunches?
   * because my redux driver couldn't catch redux's @@INIT action. this is kind of monkey patching, but this would be better then touching redux store directly.
++ If wrong regexp is used, the TodoFilter's displayed value isn't match with current store's `todoFilter`.
