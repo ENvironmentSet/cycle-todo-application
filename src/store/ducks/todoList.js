@@ -1,5 +1,6 @@
-import { filter, equals, compose, not, map, ifElse, identity,  mergeLeft, prop, construct, propEq } from 'ramda';
+import { filter, equals, compose, not, map, ifElse, identity, mergeLeft, prop, construct, propEq, pipe, has, apply, flip, append } from 'ramda';
 import { createActions, handleActions } from 'redux-actions';
+import { pickPayload } from '^/utils';
 
 import { createDefaultTodoList, Todo } from '^/constants';
 
@@ -16,11 +17,15 @@ export const { setTodoList, updateTodoItem, deleteTodoItem, clearTodoList, addTo
 
 export default handleActions(
   {
-    [setTodoList]: (_, { payload: todoList }) => todoList,
+    [setTodoList]: pickPayload,
     [updateTodoItem]: (todoList, { payload: { id, part } }) => map(ifElse(propEq('id', id), mergeLeft(part), identity), todoList),
     [deleteTodoItem]: (todoList, { payload: id }) => filter(compose(not, equals(id), prop('id')), todoList),
     [clearTodoList]: createDefaultTodoList,
-    [addTodoItem]: (todoList, { payload: todoItem }) => [...todoList, todoItem],
+    [addTodoItem]: pipe(
+      Array,
+      map(ifElse(has('type'), prop('payload'), identity)),
+      apply(flip(append)),
+    ),
   },
   createDefaultTodoList()
 );
