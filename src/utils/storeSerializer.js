@@ -1,11 +1,11 @@
-export function storeSerializer(store) {
-  const serializableStore = {...store, todoFilter: store.todoFilter.toString().replace(/\//g, '') };
+import { replace, pipe, mapObjIndexed, ifElse, is, identity, compose, equals, flip, constructN, curryN } from 'ramda';
 
-  return JSON.stringify(serializableStore);
-}
+export const storeSerializer = pipe(
+  mapObjIndexed(ifElse(is(RegExp), compose(replace(/\//g, ''), String), identity)),
+  JSON.stringify,
+);
 
-export function storeDeserializer(store) {
-  const partialSerializedStore = JSON.parse(store);
-
-  return {...partialSerializedStore, todoFilter: new RegExp(partialSerializedStore.todoFilter) };
-}
+export const storeDeserializer = pipe(
+  curryN(1, JSON.parse),
+  mapObjIndexed(ifElse(flip(equals('todoFilter')), constructN(1, RegExp), identity)),
+);
