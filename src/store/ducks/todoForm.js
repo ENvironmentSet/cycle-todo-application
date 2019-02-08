@@ -1,4 +1,5 @@
 import { createActions, handleActions } from 'redux-actions';
+import { pickPayload, mergePayloadWithPrev } from '^/utils';
 
 import { createDefaultTodoForm } from '^/constants';
 
@@ -12,18 +13,19 @@ export const {
   setTodoFormTitle,
   setTodoFormContent,
   setTodoFormTags,
-  resetTodoForm
+  resetTodoForm,
+  setTodoForm,
 } = createActions({
   [RESET_TODO_FORM]: () => {},
 }, SET_TODO_FORM_TITLE, SET_TODO_FORM_CONTENT, SET_TODO_FORM_TAGS, SET_TODO_FORM);
 
 export default handleActions(
   {
-    [setTodoFormTitle]: (todoForm, { payload: title }) => ({ ...todoForm, title }),
-    [setTodoFormContent]: (todoForm, { payload: content }) => ({ ...todoForm, content }),
-    [setTodoFormTags]: (todoForm, { payload: tags }) => ({ ...todoForm, tags }),
+    [setTodoFormTitle]: mergePayloadWithPrev('title'),
+    [setTodoFormContent]: mergePayloadWithPrev('content'),
+    [setTodoFormTags]: mergePayloadWithPrev('tags'),
     [resetTodoForm]: createDefaultTodoForm,
-    [SET_TODO_FORM]: (_, { payload: todoForm }) => todoForm,
+    [setTodoForm]: pickPayload,
   },
   createDefaultTodoForm()
 );
