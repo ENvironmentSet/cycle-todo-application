@@ -11,8 +11,8 @@ import TodoFilter from '^/components/TodoFilter';
 import { createDefaultTodoList } from '^/constants';
 
 function connector(DOM) {
-  const clear$ = DOM.select('.clearButton').events('click');
-  const create$ = DOM.select('.createButton').events('click');
+  const clear$ = DOM.select('.clear-button').events('click');
+  const create$ = DOM.select('.create-button').events('click');
 
   return {
     clear$,
@@ -64,12 +64,12 @@ function childrenCombiner({ todoList$, todoFilter$, sources }) {
 function renderer({ todoItems$, todoFilter$ }) {
   return todoFilter$
     .map(todoFilter => todoItems$
-      .map(compose(partial(ul,['.todoList']), map(compose(partial(li, ['.todoItemElement']), Array))))
-      .map(todoList => section('.todoMain', [
+      .map(compose(partial(ul,['.todo-list']), map(compose(partial(li, ['.todo-item-element']), Array))))
+      .map(todoList => section('.todo-main', [
         todoFilter,
-        button('.clearButton', { attrs: { type: 'button' } }, 'clear all todo item'),
+        button('.clear-button', { attrs: { type: 'button' } }, 'clear all todo item'),
         todoList,
-        button('.createButton', { attrs: { type: 'button' } }, 'create your own todo item!')
+        button('.create-button', { attrs: { type: 'button' } }, 'create your own todo item!')
       ]))
     )
     .flatten()
