@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
+import { ifElse, isNil, not, compose } from 'ramda';
 import { createDefaultState } from '^/constants';
 import { storeDeserializer } from '^/utils';
 
@@ -8,8 +9,11 @@ import rootReducer from '^/store/rootReducer';
 
 const cycleMiddleware = createCycleMiddleware();
 const middlewares = applyMiddleware(cycleMiddleware);
-const persistedState = localStorage.getItem('persisted_state');
-const preloadedState = persistedState ? storeDeserializer(persistedState) : createDefaultState();
+const preloadedState = ifElse(
+  compose(not, isNil),
+  storeDeserializer,
+  createDefaultState
+)(localStorage.getItem('persisted_state'));
 const store = createStore(rootReducer, preloadedState, middlewares);
 
 export default store;
