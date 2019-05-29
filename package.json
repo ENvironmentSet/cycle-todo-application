@@ -18,7 +18,6 @@
   "homepage": "https://github.com/ENvironmentSet/cycle-todo-application#readme",
   "dependencies": {
     "@cycle/history": "^7.1.0",
-    "@cycle/isolate": "^4.2.0",
     "@cycle/react": "^2.1.0",
     "@cycle/react-dom": "^2.1.0",
     "@cycle/run": "^5.2.0",
