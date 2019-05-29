@@ -40,7 +40,7 @@ module.exports = { //@TODO: Add production mode config
         ]
       },
       {
-        test: /\.m?js$/,
+        test: /\.m?jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -52,6 +52,7 @@ module.exports = { //@TODO: Add production mode config
   resolve: {
     alias: {
       '^': resolve('src'),
-    }
-  }
+    },
+    extensions: ['.mjs', '.js', '.jsx'],
+  },
 };
