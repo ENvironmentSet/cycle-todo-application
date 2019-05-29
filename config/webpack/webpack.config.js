@@ -1,9 +1,12 @@
-const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 
-module.exports = {
+const { resolve } = require('path');
+
+const babelConfig = require(resolve('config/babel/babel.config.js'));
+
+module.exports = { //@TODO: Add production mode config
   mode: 'development',
   entry: resolve('src', 'app'),
   output: {
@@ -13,6 +16,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     hot: true,
+    open: true,
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -32,9 +36,17 @@ module.exports = {
             options: {
               modules: false,
             }
-          }
+          },
         ]
-      }
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: babelConfig,
+        }
+      },
     ]
   },
   resolve: {
