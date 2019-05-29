@@ -17,16 +17,16 @@
   },
   "homepage": "https://github.com/ENvironmentSet/cycle-todo-application#readme",
   "dependencies": {
-    "@cycle/dom": "^22.3.0",
     "@cycle/history": "^7.1.0",
     "@cycle/isolate": "^4.2.0",
+    "@cycle/react": "^2.1.0",
+    "@cycle/react-dom": "^2.1.0",
     "@cycle/run": "^5.2.0",
-    "cyclic-router": "^6.0.0",
+    "@cycle/state": "^1.2.0",
+    "powercycle": "^0.10.0",
     "ramda": "^0.26.1",
-    "redux": "^4.0.1",
-    "redux-actions": "^2.6.4",
-    "switch-path": "^1.2.0",
-    "xstream": "^11.10.0"
+    "react": "^16.8.6",
+    "xstream": "^11.11.0"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.1",
