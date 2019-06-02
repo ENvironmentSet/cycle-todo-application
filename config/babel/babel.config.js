@@ -1,12 +1,5 @@
 module.exports = { //@TODO: add optimization configs for production build
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        useBuiltIns: 'usage',
-      }
-    ],
-  ],
+  presets: ['@babel/preset-env'],
   plugins: [
     [
       '@babel/plugin-transform-react-jsx',
